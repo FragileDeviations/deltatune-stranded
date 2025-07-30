@@ -23,14 +23,14 @@ namespace DeltaTune.Settings
                 settingsMenuStrip.Items.Clear();
                 
                 ToolStripMenuItem headingItem = new ToolStripMenuItem();
-                headingItem.Text = "DeltaTune";
+                headingItem.Text = "Stranded On The Beach";
                 headingItem.Enabled = false;
                 settingsMenuStrip.Items.Add(headingItem);
             
                 settingsMenuStrip.Items.Add(new ToolStripSeparator());
             
                 settingsMenuStrip.Items.Add(GetPositionMenuItem());
-                settingsMenuStrip.Items.Add(GetScaleMenuItem());
+                // settingsMenuStrip.Items.Add(GetScaleMenuItem());
                 settingsMenuStrip.Items.Add(GetBehaviorMenuItem());
                 
                 settingsMenuStrip.Items.Add(new ToolStripSeparator());
@@ -111,17 +111,17 @@ namespace DeltaTune.Settings
             ToolStripMenuItem behaviorItem = new ToolStripMenuItem();
             behaviorItem.Text = "Behavior";
             
-            ToolStripMenuItem showArtistNameItem = new ToolStripMenuItem();
-            showArtistNameItem.Text = "Show Artist Name";
-            showArtistNameItem.Checked = settingsService.ShowArtistName.Value;
-            showArtistNameItem.Click += (sender, args) => settingsService.ShowArtistName.Value = !settingsService.ShowArtistName.Value;
-            behaviorItem.DropDownItems.Add(showArtistNameItem);
+            // ToolStripMenuItem showArtistNameItem = new ToolStripMenuItem();
+            // showArtistNameItem.Text = "Show Artist Name";
+            // showArtistNameItem.Checked = settingsService.ShowArtistName.Value;
+            // showArtistNameItem.Click += (sender, args) => settingsService.ShowArtistName.Value = !settingsService.ShowArtistName.Value;
+            // behaviorItem.DropDownItems.Add(showArtistNameItem);
             
-            ToolStripMenuItem showPlaybackStatusItem = new ToolStripMenuItem();
-            showPlaybackStatusItem.Text = "Show Playback Status";
-            showPlaybackStatusItem.Checked = settingsService.ShowPlaybackStatus.Value;
-            showPlaybackStatusItem.Click += (sender, args) => settingsService.ShowPlaybackStatus.Value = !settingsService.ShowPlaybackStatus.Value;
-            behaviorItem.DropDownItems.Add(showPlaybackStatusItem);
+            // ToolStripMenuItem showPlaybackStatusItem = new ToolStripMenuItem();
+            // showPlaybackStatusItem.Text = "Show Playback Status";
+            // showPlaybackStatusItem.Checked = settingsService.ShowPlaybackStatus.Value;
+            // showPlaybackStatusItem.Click += (sender, args) => settingsService.ShowPlaybackStatus.Value = !settingsService.ShowPlaybackStatus.Value;
+            // behaviorItem.DropDownItems.Add(showPlaybackStatusItem);
             
             ToolStripMenuItem hideAutomaticallyItem = new ToolStripMenuItem();
             hideAutomaticallyItem.Text = "Hide Automatically";

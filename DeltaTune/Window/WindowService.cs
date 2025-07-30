@@ -161,12 +161,12 @@ namespace DeltaTune.Window
             Icon icon = form.Icon;
             trayIcon = new NotifyIcon();
             trayIcon.Icon = icon;
-            trayIcon.Text = "DeltaTune";
+            trayIcon.Text = "BRIDGES Audio Noftifier";
             trayIcon.Visible = true;
             trayIcon.ContextMenuStrip = settingsMenu.GetSettingsMenu();
 
-            trayIcon.BalloonTipTitle = "DeltaTune is now running!";
-            trayIcon.BalloonTipText = "Play some music to get started or right-click the DeltaTune icon in your system tray for customization options.";
+            trayIcon.BalloonTipTitle = "BRIDGES Audio Notifier is now running!";
+            trayIcon.BalloonTipText = "Play some music to get started or right-click the BRIDGES icon in your system tray for customization options.";
             trayIcon.ShowBalloonTip(1000);
         }
 

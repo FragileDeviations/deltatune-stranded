@@ -12,7 +12,7 @@ namespace DeltaTune
             {
                 if (singleInstance.IsRunning)
                 {
-                    MessageBox.Show("Another instance of DeltaTune is already running.\nTo close it, right-click the DeltaTune icon in your system tray and choose \"Quit\".", ProgramInfo.Name, MessageBoxButtons.OK);
+                    MessageBox.Show("Another instance of BRIDGES Audio Notifier is already running.\nTo close it, right-click the BRIDGES icon in your system tray and choose \"Quit\".", ProgramInfo.Name, MessageBoxButtons.OK);
                     return;
                 }
                 

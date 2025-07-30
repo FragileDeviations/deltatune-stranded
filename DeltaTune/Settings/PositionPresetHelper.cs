@@ -9,11 +9,11 @@ namespace DeltaTune.Settings
 
         static PositionPresetHelper()
         {
-            presetPositions[(int)PositionPreset.TopLeft] = new Vector2(0.025f, 0.025f);
-            presetPositions[(int)PositionPreset.TopRight] = new Vector2(0.975f, 0.025f);
+            presetPositions[(int)PositionPreset.TopLeft] = new Vector2(0.025f, 0.055f);
+            presetPositions[(int)PositionPreset.TopRight] = new Vector2(0.74f, 0.055f);
             presetPositions[(int)PositionPreset.BottomLeft] = new Vector2(0.025f, 0.975f);
-            presetPositions[(int)PositionPreset.BottomRight] = new Vector2(0.975f, 0.975f);
-            presetPositions[(int)PositionPreset.Original] = new Vector2(0.74f, 0.75f);
+            presetPositions[(int)PositionPreset.BottomRight] = new Vector2(0.74f, 0.975f);
+            presetPositions[(int)PositionPreset.Original] = new Vector2(0.74f, 0.66f);
         }
 
         public static Vector2 GetFractionalPosition(PositionPreset preset)
