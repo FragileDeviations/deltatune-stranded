@@ -126,10 +126,14 @@ namespace DeltaTune.Window
             window.Position = windowPosition;
         }
 
+        // In WindowService.cs
         private void SetWindowScale(int scaleFactor)
         {
             Rectangle currentScreenBounds = GetCurrentScreenBounds();
-            SetWindowSize(new Point(currentScreenBounds.Width, (int)lineHeight * scaleFactor));
+            // Get the number of lines to display (e.g., 3 for title, artist, courtesy)
+            int lineCount = 3; // Or get dynamically from displayService/musicTitleDisplay
+            int totalHeight = (int)(lineHeight * scaleFactor * lineCount);
+            SetWindowSize(new Point(currentScreenBounds.Width, totalHeight));
         }
         
         private Rectangle GetCurrentScreenBounds()

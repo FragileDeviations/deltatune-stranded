@@ -20,7 +20,7 @@ namespace DeltaTune
         private ISettingsFile settingsFile;
 
         private SpriteBatch spriteBatch;
-        private BitmapFont musicTitleFont;
+        private SpriteFont musicTitleFont;
         
         public DeltaTune()
         {
@@ -51,9 +51,7 @@ namespace DeltaTune
 
         protected override void LoadContent()
         {
-            musicTitleFont = BitmapFont.FromFile(GraphicsDevice, "Content/Fonts/MusicTitleFont.fnt");
-            musicTitleFont.FallbackCharacter = '▯';
-            
+            musicTitleFont = Content.Load<SpriteFont>("Fonts/DeathStranding");
             spriteBatch = new SpriteBatch(GraphicsDevice);
             
             base.LoadContent();
@@ -61,7 +59,7 @@ namespace DeltaTune
 
         protected override void BeginRun()
         {
-            windowService = new WindowService(this, graphicsDeviceManagerInstance, settingsMenu, settingsService, musicTitleFont.LineHeight);
+            windowService = new WindowService(this, graphicsDeviceManagerInstance, settingsMenu, settingsService, musicTitleFont.LineSpacing);
             windowService.InitializeWindow();
 
             Vector2 WindowSizeProvider() => new Vector2(graphicsDeviceManagerInstance.GraphicsDevice.Viewport.Width, graphicsDeviceManagerInstance.GraphicsDevice.Viewport.Height);
@@ -81,7 +79,7 @@ namespace DeltaTune
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Transparent);
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.PointClamp);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.LinearClamp);
             displayService.Draw(spriteBatch, gameTime);
             spriteBatch.End();
             

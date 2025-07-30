@@ -14,7 +14,7 @@ namespace DeltaTune.Display
         private readonly IMediaInfoService mediaInfoService;
         private readonly ISettingsService settingsService;
         private readonly Func<Vector2> windowSizeProvider;
-        private readonly BitmapFont musicTitleFont;
+        private readonly SpriteFont musicTitleFont;
         
         private MediaInfo currentMediaInfo;
         private IMusicTitleDisplay primaryDisplay;
@@ -22,7 +22,7 @@ namespace DeltaTune.Display
 
         private double lastMediaInfoUpdateTime;
         
-        public DisplayService(IMediaInfoService mediaInfoService, ISettingsService settingsService, BitmapFont musicTitleFont, Func<Vector2> windowSizeProvider)
+        public DisplayService(IMediaInfoService mediaInfoService, ISettingsService settingsService, SpriteFont musicTitleFont, Func<Vector2> windowSizeProvider)
         {
             this.mediaInfoService = mediaInfoService;
             this.settingsService = settingsService;

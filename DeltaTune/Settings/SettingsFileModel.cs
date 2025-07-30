@@ -4,8 +4,8 @@ namespace DeltaTune.Settings
 {
     public class SettingsFileModel
     {
-        public int ScaleFactor { get; set; } = 3;
-        public Vector2 Position { get; set; } = PositionPresetHelper.GetFractionalPosition(PositionPreset.TopRight);
+        public int ScaleFactor { get; set; } = 1;
+        public Vector2 Position { get; set; } = PositionPresetHelper.GetFractionalPosition(PositionPreset.Original);
         public bool ShowArtistName { get; set; } =  true;
         public bool ShowPlaybackStatus { get; set; } = false;
         public bool HideAutomatically { get; set; } = true;

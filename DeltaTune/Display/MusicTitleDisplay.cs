@@ -35,11 +35,11 @@ namespace DeltaTune.Display
         private const float AppearDelayLength = 0.5f;
         private const float AppearAnimationLength = 0.75f;
         private const float DisappearAnimationLength = 0.75f;
-        private const float StayTime = 2.5f;
+        private const float StayTime = 5f;
         private const float SlideInDistance = 24;
         private const float SlideOutDistance = 24;
 
-        private readonly BitmapFont font;
+        private readonly SpriteFont font;
         private readonly ISettingsService settingsService;
         private readonly Func<Vector2> windowSizeProvider;
         private readonly Observable<Vector2> windowSize;
@@ -57,7 +57,7 @@ namespace DeltaTune.Display
         private readonly IDisposable scaleFactorSubscription;
         private readonly IDisposable positionSubscription;
         
-        public MusicTitleDisplay(BitmapFont font, ISettingsService settingsService, Func<Vector2> windowSizeProvider)
+        public MusicTitleDisplay(SpriteFont font, ISettingsService settingsService, Func<Vector2> windowSizeProvider)
         {
             this.font = font;
             this.settingsService = settingsService;
@@ -145,46 +145,60 @@ namespace DeltaTune.Display
             }
         }
 
+        // Draw: Render each line with vertical spacing
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             if (State != MusicTitleDisplayState.Hidden && State != MusicTitleDisplayState.AppearingDelay)
             {
                 Vector2 finalPosition = position + positionOffset;
-                
-                if (settingsService.Position.Value.X > 0.5f)
+
+                // Split text into lines
+                var lines = text.Split('\n');
+
+                Color finalColor = new Color(187, 218, 217, 255)
                 {
-                    finalPosition.X -= textSize.Width * settingsService.ScaleFactor.Value;
-                }
+                    A = (byte)MathHelper.Clamp((int)Math.Round(opacity * 255), 0, 255)
+                };
+
+                Vector2 linePosition = finalPosition + new Vector2(-15f, 0f);
+                Vector2 secondLinePosition = linePosition + new Vector2(10f, 40);
+                Vector2 thirdLinePosition = secondLinePosition + new Vector2(0, 30f);
+                float origScale = 1f;
                 
-                Color finalColor = Color.White;
-                finalColor.A = (byte)MathHelper.Clamp((int)Math.Round(opacity * 255), 0, 255);
-                
-                spriteBatch.DrawString(font, text, finalPosition, finalColor, 0, Vector2.Zero, settingsService.ScaleFactor.Value, SpriteEffects.None, 0);
+                spriteBatch.DrawString(font, lines[0], linePosition, finalColor, 0, Vector2.Zero, origScale, SpriteEffects.None, 0);
+                spriteBatch.DrawString(font, lines[1], secondLinePosition, finalColor, 0, Vector2.Zero, origScale / 1.5f, SpriteEffects.None, 0.5f);
+                spriteBatch.DrawString(font, lines[2], thirdLinePosition, finalColor, 0, Vector2.Zero, origScale / 2f, SpriteEffects.None, 1.0f);
             }
         }
 
+        // UpdateText: Compose multi-line text
         private void UpdateText()
         {
             if (State == MusicTitleDisplayState.Disappearing || State == MusicTitleDisplayState.Hidden) return;
-            
+
+            string titleLine = $"\"{Content.Title}\"";
+            string artistLine = $"{Content.Artist}";
+            string courtesyLine = $"Courtesy of {Content.Artist}";
+
             if (settingsService.ShowPlaybackStatus.Value)
             {
                 switch (Content.Status)
                 {
                     case PlaybackStatus.Playing:
-                        text = $"♪~   {GetTextString()}";
+                        titleLine = $"{titleLine}";
                         break;
                     case PlaybackStatus.Paused:
-                        text = $"⏸~   {GetTextString()}";
+                        titleLine = $"{titleLine}";
                         break;
                 }
             }
             else
             {
-                text = $"♪~   {GetTextString()}";
+                titleLine = $"{titleLine}";
             }
-            
-            textSize = font.MeasureString(text);
+
+            text = $"{titleLine}\n{artistLine}\n{courtesyLine}";
+            textSize = font.MeasureString(titleLine); // Only measure the first line for horizontal alignment
         }
 
         private string GetTextString()

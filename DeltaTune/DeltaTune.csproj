@@ -9,6 +9,9 @@
         <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
         <InvariantGlobalization>true</InvariantGlobalization>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <AssemblyName>StrandedOnTheBeach</AssemblyName>
+        <Company>Stranded On The Beach</Company>
+        <Product>Stranded On The Beach</Product>
     </PropertyGroup>
     <PropertyGroup>
         <ApplicationManifest>app.manifest</ApplicationManifest>
